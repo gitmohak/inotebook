@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
-const mongoURI = "mongodb://0.0.0.0:27017/"
+const mongoURI = "mongodb://0.0.0.0:27017/inotebook?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+
 const connectToMongo = async () => {
    await mongoose.connect(mongoURI);
-   app.listen(3000, () => console.log("Server started on port 3000"));
+   app.listen(5000, () => console.log("Backend Server started on port 5000"));
 }
 connectToMongo();
 
+var cors = require('cors');
 const express = require("express");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 // Available Routes
 app.use('/api/auth', require('./routes/auth'))
